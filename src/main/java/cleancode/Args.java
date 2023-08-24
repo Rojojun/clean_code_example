@@ -1,5 +1,6 @@
 package cleancode;
 
+import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
@@ -28,6 +29,23 @@ public class Args {
         if ()
     }
 
+    private void parseArgumentStrings(List<String> argsList) throws RuntimeException {
+        for (currentArgument = argsList.listIterator(); currentArgument.hasNext();) {
+            String argString = currentArgument.next();
+            if (argString.startsWith("-")) {
+                parseArgumentCharacters(argString.substring(1));
+            } else {
+                currentArgument.previous();
+                break;
+            }
+        }
+    }
+
+    private void parseArgumentCharacters(String argChars) throws RuntimeException {
+        for (int i = 0; i < argChars.length(); i++) {
+            parseArgumentCharacter(argChars.charAt(i));
+        }
+    }
 
     private void parseArgumentCharacter(char argChar) throws RuntimeException {
         ArgumentMarshaler m = marshalers.get(argChar);
