@@ -13,7 +13,7 @@ public class Args {
     public void ______________public_area______________() {}
 
     private void ______________private_area______________() {}
-    private void parseSchema(String schema) {
+    private void parseSchema(String schema) throws ArgsException {
         for (String element : schema.split(", ")) {
             if (element.length() > 0) {
                 parseSchemaElement(element.trim());
@@ -21,7 +21,7 @@ public class Args {
         }
     }
 
-    private void parseSchemaElement(String element) throws RuntimeException {
+    private void parseSchemaElement(String element) throws ArgsException {
         char elementId = element.charAt(0);
         String elementTail = element.substring(1);
 
@@ -29,7 +29,7 @@ public class Args {
         if ()
     }
 
-    private void parseArgumentStrings(List<String> argsList) throws RuntimeException {
+    private void parseArgumentStrings(List<String> argsList) throws ArgsException {
         for (currentArgument = argsList.listIterator(); currentArgument.hasNext();) {
             String argString = currentArgument.next();
             if (argString.startsWith("-")) {
@@ -41,13 +41,13 @@ public class Args {
         }
     }
 
-    private void parseArgumentCharacters(String argChars) throws RuntimeException {
+    private void parseArgumentCharacters(String argChars) throws ArgsException {
         for (int i = 0; i < argChars.length(); i++) {
             parseArgumentCharacter(argChars.charAt(i));
         }
     }
 
-    private void parseArgumentCharacter(char argChar) throws RuntimeException {
+    private void parseArgumentCharacter(char argChar) throws ArgsException {
         ArgumentMarshaler m = marshalers.get(argChar);
         if (m == null) {
             throw new RuntimeException();
