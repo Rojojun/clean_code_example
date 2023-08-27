@@ -13,6 +13,10 @@ public class ArgsException extends Exception{
         super(message);
     }
 
+    public ArgsException(ErrorCode errorCode) {
+        this.errorCode = errorCode;
+    }
+
     public ArgsException(ErrorCode errorCode, String errorParameter) {
         this.errorCode = errorCode;
         this.errorParameter = errorParameter;

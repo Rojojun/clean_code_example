@@ -1,9 +1,11 @@
 package cleancode;
 
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Map;
-import java.util.Set;
+import cleancode.marshaler.*;
+
+import java.util.*;
+
+import static cleancode.ArgsException.ErrorCode.INVALID_ARGUMENT_FORMAT;
+import static cleancode.ArgsException.ErrorCode.INVALID_ARGUMENT_NAME;
 
 public class Args {
     private Map<Character, ArgumentMarshaler> marshalers;
@@ -11,6 +13,13 @@ public class Args {
     private ListIterator<String> currentArgument;
 
     public void ______________public_area______________() {}
+    public Args(String schema, String[] args) throws ArgsException {
+        marshalers = new HashMap<Character, ArgumentMarshaler>();
+        argsFound = new HashSet<Character>();
+
+        parseSchema(schema);
+        parseArgumentStrings(Arrays.asList(args));
+    }
 
     private void ______________private_area______________() {}
     private void parseSchema(String schema) throws ArgsException {
@@ -24,9 +33,26 @@ public class Args {
     private void parseSchemaElement(String element) throws ArgsException {
         char elementId = element.charAt(0);
         String elementTail = element.substring(1);
+        validateSchemaElementId(elementId);
+        if (elementTail.length() == 0) {
+            marshalers.put(elementId, new BooleanArgumentMarshaler());
+        } else if (elementTail.equals("*")) {
+            marshalers.put(elementId, new StringArgumentMarshaler());
+        } else if (elementTail.equals("#")) {
+            marshalers.put(elementId, new IntegerArgumentMarshaler());
+        } else if (elementTail.equals("##")) {
+            marshalers.put(elementId, new DoubleArgumentMarshaler());
+        } else if (elementTail.equals("[*]")) {
+            marshalers.put(elementId, new StringArrayArgumentMarshaler());
+        } else {
+            throw new ArgsException(INVALID_ARGUMENT_FORMAT, elementId, elementTail);
+        }
+    }
 
-
-        if ()
+    private void validateSchemaElementId(char elementId) throws ArgsException {
+        if (!Character.isLetter(elementId)) {
+            throw new ArgsException(INVALID_ARGUMENT_NAME, elementId, null);
+        }
     }
 
     private void parseArgumentStrings(List<String> argsList) throws ArgsException {
@@ -53,10 +79,11 @@ public class Args {
             throw new RuntimeException();
         } else {
             argsFound.add(argChar);
-        } try {
-            m.set(currentArgument);
-        } catch (Exception e) {
-            throw e;
+            try {
+                m.set(currentArgument);
+            } catch (ArgsException e) {
+                e.setErrorArgumentId(argChar);
+                throw e; }
         }
     }
 }
