@@ -1,6 +1,6 @@
-package cleancode.marshaler;
+package cleancode.result.marshaler;
 
-import cleancode.ArgsException;
+import cleancode.result.ArgsException;
 
 import java.util.Iterator;
 

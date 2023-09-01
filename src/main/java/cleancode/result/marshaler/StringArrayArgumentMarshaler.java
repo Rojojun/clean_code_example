@@ -1,13 +1,13 @@
-package cleancode.marshaler;
+package cleancode.result.marshaler;
 
-import cleancode.ArgsException;
+import cleancode.result.ArgsException;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import static cleancode.ArgsException.ErrorCode.MISSING_STRING;
+import static cleancode.result.ArgsException.ErrorCode.MISSING_STRING;
 
 public class StringArrayArgumentMarshaler implements ArgumentMarshaler{
     private List<String> arrayValue = new ArrayList<String>();

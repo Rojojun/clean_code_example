@@ -1,11 +1,11 @@
-package cleancode.marshaler;
+package cleancode.result.marshaler;
 
-import cleancode.ArgsException;
+import cleancode.result.ArgsException;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import static cleancode.ArgsException.ErrorCode.MISSING_INTEGER;
+import static cleancode.result.ArgsException.ErrorCode.MISSING_INTEGER;
 
 public class IntegerArgumentMarshaler implements ArgumentMarshaler {
     private int integerValue = 0;
