@@ -1,6 +1,6 @@
-package cleancode.result;
+package cleancode.refacoted;
 
-import static cleancode.result.ArgsException.ErrorCode.*;
+import static cleancode.refacoted.ArgsException.ErrorCode.*;
 
 public class ArgsException extends Exception{
     private char errorArgumentId = '\0';

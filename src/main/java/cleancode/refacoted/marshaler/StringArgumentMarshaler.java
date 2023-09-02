@@ -1,11 +1,11 @@
-package cleancode.result.marshaler;
+package cleancode.refacoted.marshaler;
 
-import cleancode.result.ArgsException;
+import cleancode.refacoted.ArgsException;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import static cleancode.result.ArgsException.ErrorCode.MISSING_STRING;
+import static cleancode.refacoted.ArgsException.ErrorCode.MISSING_STRING;
 
 public class StringArgumentMarshaler implements ArgumentMarshaler{
     private String stringValue = "";

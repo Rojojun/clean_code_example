@@ -1,11 +1,11 @@
-package cleancode.result;
+package cleancode.refacoted;
 
-import cleancode.result.marshaler.*;
+import cleancode.refacoted.marshaler.*;
 
 import java.util.*;
 
-import static cleancode.result.ArgsException.ErrorCode.INVALID_ARGUMENT_FORMAT;
-import static cleancode.result.ArgsException.ErrorCode.INVALID_ARGUMENT_NAME;
+import static cleancode.refacoted.ArgsException.ErrorCode.INVALID_ARGUMENT_FORMAT;
+import static cleancode.refacoted.ArgsException.ErrorCode.INVALID_ARGUMENT_NAME;
 
 public class Args {
     private Map<Character, ArgumentMarshaler> marshalers;
